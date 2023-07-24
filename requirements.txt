@@ -1,0 +1,12 @@
+# Function dependencies, for example:
+# >=version
+pandas
+scikit-learn
+ipython
+vertexai 
+google-cloud-aiplatform
+seaborn
+google-cloud-vision
+google-cloud
+#functions-framework==3.3.0
+#cloudevents==1.9.0
