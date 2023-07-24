@@ -8,9 +8,6 @@ from IPython.display import Markdown, display
 from sklearn.metrics.pairwise import cosine_similarity
 from vertexai.preview.language_models import (ChatModel, InputOutputTextPair,TextEmbeddingModel,TextGenerationModel)
 
-
-
-
 def analyze_image_from_uri(
     image_uri: str,
     feature_types: Sequence,
@@ -61,6 +58,7 @@ def detect_text_uri(uri):
         )
 
 employment_letter = "gs://employment-letter1/Employee-Confirmation-Letter.png"
+employment_letter2 = "gs://employment-letter1/Confirmation-of-Employment-Letter-Example.jpg"
 text_detected = detect_text_uri(employment_letter)
 employment_letter_content = text_detected[0]
 
@@ -72,10 +70,8 @@ generation_model = TextGenerationModel.from_pretrained("text-bison@001")
 text = f"Full name, Current address, Date submitted, Employer,Employer address, Hiring date,Job title,Employment status, if any of the information is missing, say that is missed, {employment_letter_content}"
 prompt = "extract these data points from the text given"
 response = generation_model.predict(prompt=f"{prompt}:{text}")
-
 print(response.text)
 
-employment_letter2 = "gs://employment-letter1/Confirmation-of-Employment-Letter-Example.jpg"
 
 def detect_logos_uri(uri):
     """Detects logos in the file located in Google Cloud Storage or on the Web."""
@@ -97,8 +93,6 @@ def detect_logos_uri(uri):
             "{}\nFor more info on error messages, check: "
             "https://cloud.google.com/apis/design/errors".format(response.error.message)
         )
-
-
 
 def extract_info(event, context):
   #data = cloud_event.data
